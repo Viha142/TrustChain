@@ -1,0 +1,11 @@
+Supplier,Category,Fulfillment,OnTime,PriceScore,Inventory,Rating
+FreshFoods Ltd,Grocery,95,92,4.5,500,4.0
+QuickSupply,Snacks,88,85,4.1,300,4.4
+RetailFlow,Dairy,75,70,3.8,200,3.9
+SmartStock,Grocery,98,95,4.8,700,4.9
+FastMart,Beverages,80,78,4.0,250,4.1
+DairyBest,Dairy,91,89,4.3,320,4.6
+SnackKing,Snacks,85,82,4.2,280,4.3
+BeveragePro,Beverages,93,90,4.6,450,4.7
+CarePack,Personal Care,87,84,4.2,180,4.4
+GroceryHub,Grocery,90,88,4.4,600,4.5

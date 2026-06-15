@@ -1,0 +1,16 @@
+Product,Category,CurrentStock,MinimumStock
+Biscuits,Snacks,15,40
+Milk,Dairy,20,50
+Bread,Grocery,30,60
+Juice,Beverages,25,45
+Rice,Grocery,100,50
+Sugar,Grocery,80,30
+Chips,Snacks,10,35
+Cheese,Dairy,12,25
+Tea,Beverages,55,40
+Pasta,Grocery,45,30
+Soap,Personal Care,8,20
+Shampoo,Personal Care,5,15
+Cooking Oil,Grocery,90,40
+Noodles,Snacks,18,30
+Butter,Dairy,22,20
