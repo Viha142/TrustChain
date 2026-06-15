@@ -146,57 +146,154 @@ with col_cards:
         badge_class = "badge-top" if score >= 90 else ("badge-good" if score >= 80 else "badge-avg")
         badge_label = "⭐ Top Vendor" if score >= 90 else ("✅ Reliable" if score >= 80 else "📋 Average")
         bar_w = min(100, int(score))
+        
+with st.expander(
+    f"{'🏆 ' if is_top else ''}{row['Supplier']} — Score: {score:.1f}",
+    expanded=rank_idx == 0
+):
 
-        with st.expander(f"{'🏆 ' if is_top else ''}{row['Supplier']} — Score: {score:.1f}", expanded=rank_idx==0):
-            st.markdown(f"""
+    st.markdown(f"""
+         <div class="sup-card">
+
+        <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px">
+
             <div>
-                <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px">
-                    <div>
-                        <div class="sup-name">{row['Supplier']}</div>
-                        <div class="sup-cat">📂 {row['Category']}</div>
-                    </div>
-                    <div style="text-align:right">
-                        <div class="score-big">{score:.1f}</div>
-                        <div style="font-size:11px;color:#94A3B8">Reliability</div>
-                        <span class="badge {badge_class}" style="margin-top:4px;display:inline-block">{badge_label}</span>
-                    </div>
+                <div class="sup-name">{row['Supplier']}</div>
+                <div class="sup-cat">📂 {row['Category']}</div>
+            </div>
+
+            <div style="text-align:right">
+                <div class="score-big">{score:.1f}</div>
+                <div style="font-size:11px;color:#94A3B8">
+                    Reliability
                 </div>
 
-                <div style="margin-bottom:12px">
-                    <div style="display:flex;justify-content:space-between;
-                         font-size:12px;color:#64748B;margin-bottom:4px">
-                        <span>Reliability Score</span><span>{score:.1f}/100</span>
-                    </div>
-                    <div style="background:#E2E8F0;border-radius:4px;height:8px;">
-                        <div style="width:{bar_w}%;height:100%;
-                             background:linear-gradient(90deg,#7C3AED,#2563EB);border-radius:4px;"></div>
-                    </div>
+                <span class="badge {badge_class}"
+                      style="margin-top:4px;display:inline-block">
+                    {badge_label}
+                </span>
+            </div>
+
+        </div>
+
+        <div style="margin-bottom:12px">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                font-size:12px;
+                color:#64748B;
+                margin-bottom:4px;
+            ">
+                <span>Reliability Score</span>
+                <span>{score:.1f}/100</span>
+            </div>
+
+            <div style="
+                background:#E2E8F0;
+                border-radius:4px;
+                height:8px;
+            ">
+
+                <div style="
+                    width:{bar_w}%;
+                    height:100%;
+                    background:linear-gradient(90deg,#7C3AED,#2563EB);
+                    border-radius:4px;
+                "></div>
+
+            </div>
+
+        </div>
+
+        <div style="
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr;
+            gap:10px;
+            margin-top:10px;
+        ">
+
+            <div style="
+                background:#F8FAFF;
+                border-radius:10px;
+                padding:12px;
+                text-align:center;
+            ">
+                <div style="font-size:20px;font-weight:800;color:#2563EB">
+                    {row['Fulfillment']}%
                 </div>
 
-                <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px">
-                    <div style="background:#F8FAFF;border-radius:10px;padding:12px;text-align:center">
-                        <div style="font-size:20px;font-weight:800;color:#2563EB">{row['Fulfillment']}%</div>
-                        <div style="font-size:11px;color:#94A3B8;margin-top:2px">Fulfillment</div>
-                    </div>
-                    <div style="background:#F8FAFF;border-radius:10px;padding:12px;text-align:center">
-                        <div style="font-size:20px;font-weight:800;color:#7C3AED">{row['OnTime']}%</div>
-                        <div style="font-size:11px;color:#94A3B8;margin-top:2px">On-Time</div>
-                    </div>
-                    <div style="background:#F8FAFF;border-radius:10px;padding:12px;text-align:center">
-                        <div style="font-size:20px;font-weight:800;color:#06B6D4">⭐{row['Rating']}</div>
-                        <div style="font-size:11px;color:#94A3B8;margin-top:2px">Rating</div>
-                    </div>
-                    <div style="background:#F8FAFF;border-radius:10px;padding:12px;text-align:center">
-                        <div style="font-size:20px;font-weight:800;color:#059669">{row['Inventory']}</div>
-                        <div style="font-size:11px;color:#94A3B8;margin-top:2px">Units Avail.</div>
-                    </div>
-                    <div style="background:#F8FAFF;border-radius:10px;padding:12px;text-align:center">
-                        <div style="font-size:20px;font-weight:800;color:#D97706">{row['PriceScore']}</div>
-                        <div style="font-size:11px;color:#94A3B8;margin-top:2px">Price Score</div>
-                    </div>
+                <div style="font-size:11px;color:#94A3B8;margin-top:2px">
+                    Fulfillment
                 </div>
             </div>
-            """, unsafe_allow_html=True)
+
+            <div style="
+                background:#F8FAFF;
+                border-radius:10px;
+                padding:12px;
+                text-align:center;
+            ">
+                <div style="font-size:20px;font-weight:800;color:#7C3AED">
+                    {row['OnTime']}%
+                </div>
+
+                <div style="font-size:11px;color:#94A3B8;margin-top:2px">
+                    On-Time
+                </div>
+            </div>
+
+            <div style="
+                background:#F8FAFF;
+                border-radius:10px;
+                padding:12px;
+                text-align:center;
+            ">
+                <div style="font-size:20px;font-weight:800;color:#06B6D4">
+                    ⭐ {row['Rating']}
+                </div>
+
+                <div style="font-size:11px;color:#94A3B8;margin-top:2px">
+                    Rating
+                </div>
+            </div>
+
+            <div style="
+                background:#F8FAFF;
+                border-radius:10px;
+                padding:12px;
+                text-align:center;
+            ">
+                <div style="font-size:20px;font-weight:800;color:#059669">
+                    {row['Inventory']}
+                </div>
+
+                <div style="font-size:11px;color:#94A3B8;margin-top:2px">
+                    Units Available
+                </div>
+            </div>
+
+            <div style="
+                background:#F8FAFF;
+                border-radius:10px;
+                padding:12px;
+                text-align:center;
+            ">
+                <div style="font-size:20px;font-weight:800;color:#D97706">
+                    {row['PriceScore']}
+                </div>
+
+                <div style="font-size:11px;color:#94A3B8;margin-top:2px">
+                    Price Score
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+        
+            
 
 with col_ranking:
     st.markdown("#### 🏆 Master Ranking")
