@@ -358,82 +358,73 @@ with left_col:
         else:
             badge = "📋 Average"
 
-        with st.expander(
-            f"{row['Supplier']} — Score: {score}",
-            expanded=(index == 0)
-        ):
+    st.markdown(f"""
+<div class="rank-card">
 
-            st.markdown(f"""
-            <div class="sup-card">
+    <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:8px;
+    ">
 
-                <div style="
-                    display:flex;
-                    justify-content:space-between;
-                    align-items:flex-start;
-                    margin-bottom:18px;
-                ">
+        <div>
+            <span style="font-size:15px">
+                {medal}
+            </span>
 
-                    <div>
-                        <div class="sup-name">
-                            {row['Supplier']}
-                        </div>
+            <span style="
+                font-weight:700;
+                margin-left:6px;
+                color:#0F172A;
+            ">
+                {row['Supplier']}
+            </span>
+        </div>
 
-                        <div class="sup-cat">
-                            📂 {row['Category']}
-                        </div>
-                    </div>
+        <div style="
+            font-weight:800;
+            color:#2563EB;
+        ">
+            {row['ReliabilityScore']}
+        </div>
 
-                    <div style="text-align:right">
-                        <div class="score-big">
-                            {score}
-                        </div>
+    </div>
 
-                        <div style="
-                            font-size:12px;
-                            color:#64748B;
-                        ">
-                            Reliability
-                        </div>
+    <div style="
+        background:#E2E8F0;
+        border-radius:4px;
+        height:6px;
+        overflow:hidden;
+    ">
 
-                        <div style="
-                            margin-top:6px;
-                            font-size:12px;
-                            font-weight:700;
-                            color:#7C3AED;
-                        ">
-                            {badge}
-                        </div>
-                    </div>
+        <div style="
+            width:{min(int(row['ReliabilityScore']),100)}%;
+            height:100%;
+            background:linear-gradient(
+                90deg,
+                #2563EB,
+                #7C3AED
+            );
+        "></div>
 
-                </div>
+    </div>
 
-                <div style="
-                    background:#E2E8F0;
-                    border-radius:6px;
-                    height:10px;
-                    overflow:hidden;
-                    margin-bottom:20px;
-                ">
+    <div style="
+        margin-top:6px;
+        font-size:11px;
+        color:#94A3B8;
+    ">
+        {row['Category']} · ⭐ {row['Rating']}
+    </div>
 
-                    <div style="
-                        width:{min(int(score),100)}%;
-                        height:100%;
-                        background:linear-gradient(
-                            90deg,
-                            #7C3AED,
-                            #2563EB
-                        );
-                    "></div>
+</div>
+""", unsafe_allow_html=True)
 
-                </div>
+m1, m2, m3 = st.columns(3)
+m4, m5 = st.columns(2)
 
-            </div>
-            """, unsafe_allow_html=True)
-
-            m1, m2, m3 = st.columns(3)
-            m4, m5 = st.columns(2)
-
-            with m1:
+with m1:
                 st.markdown(f"""
                 <div class="metric-box">
                     <div class="metric-value" style="color:#2563EB">
@@ -444,8 +435,7 @@ with left_col:
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
-
-            with m2:
+with m2:
                 st.markdown(f"""
                 <div class="metric-box">
                     <div class="metric-value" style="color:#7C3AED">
@@ -457,7 +447,7 @@ with left_col:
                 </div>
                 """, unsafe_allow_html=True)
 
-            with m3:
+with m3:
                 st.markdown(f"""
                 <div class="metric-box">
                     <div class="metric-value" style="color:#06B6D4">
@@ -469,7 +459,7 @@ with left_col:
                 </div>
                 """, unsafe_allow_html=True)
 
-            with m4:
+with m4:
                 st.markdown(f"""
                 <div class="metric-box">
                     <div class="metric-value" style="color:#059669">
@@ -481,7 +471,7 @@ with left_col:
                 </div>
                 """, unsafe_allow_html=True)
 
-            with m5:
+with m5:
                 st.markdown(f"""
                 <div class="metric-box">
                     <div class="metric-value" style="color:#D97706">
