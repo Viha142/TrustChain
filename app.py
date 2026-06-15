@@ -289,16 +289,7 @@ with st.sidebar:
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("**NAVIGATION**")
-    st.page_link("app.py", label="🏠  Dashboard", )
-    st.page_link("pages/1_Inventory_Management.py", label="📦  Inventory")
-    st.page_link("pages/2_Supplier_Network.py", label="🤝  Supplier Network")
-    st.page_link("pages/3_AI_Assistant.py", label="🤖  AI Assistant")
-    st.page_link("pages/4_Analytics.py", label="📊  Analytics")
-    st.page_link("pages/5_Contracts_Trust.py", label="📋  Contracts & Trust")
-
-    st.markdown("<div style='margin-top:32px'></div>", unsafe_allow_html=True)
-    st.markdown("---")
+   
 
     # Dark mode toggle
     dark = st.toggle("🌙 Dark Mode", value=False)
