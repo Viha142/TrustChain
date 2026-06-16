@@ -1,7 +1,7 @@
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from textwrap import dedent
 
 st.set_page_config(page_title="Suppliers — VendorVault", page_icon="🤝", layout="wide")
 
@@ -149,8 +149,8 @@ with col_cards:
         bar_w = min(100, int(score))
 
         with st.expander(f"{'🏆 ' if is_top else ''}{row['Supplier']} — Score: {score:.1f}", expanded=rank_idx==0):
-            st.markdown(f"""
-            <div>
+            st.markdown(dedent(f"""
+<div>
                 <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px">
                     <div>
                         <div class="sup-name">{row['Supplier']}</div>
@@ -197,7 +197,7 @@ with col_cards:
                     </div>
                 </div>
             </div>
-            """, unsafe_allow_html=True)
+"""), unsafe_allow_html=True)
 
 with col_ranking:
     st.markdown("#### 🏆 Master Ranking")
