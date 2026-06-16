@@ -6,65 +6,66 @@ from textwrap import dedent
 
 st.set_page_config(page_title="Suppliers — VendorVault", page_icon="🤝", layout="wide")
 
-st.markdown("""
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
-#MainMenu, footer, header { visibility: hidden; }
-.stApp { background: linear-gradient(135deg, #F0F4FF 0%, #F8FAFF 50%, #EEF2FF 100%); }
-section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #0F172A 0%, #1E1B4B 50%, #1E3A5F 100%) !important;
-}
-section[data-testid="stSidebar"] * { color: #E2E8F0 !important; }
-.page-header {
-    background: linear-gradient(135deg, #4C1D95 0%, #7C3AED 60%, #A855F7 100%);
-    border-radius: 16px; padding: 28px 36px; color: white; margin-bottom: 28px;
-}
-.sup-card {
-    background: white; border-radius: 14px; padding: 20px;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-    border: 1px solid #E2E8F0; margin-bottom: 14px;
-    transition: all 0.2s;
-    border-left: 5px solid #7C3AED;
-}
-.sup-card:hover {
-    box-shadow: 0 6px 28px rgba(124,58,237,0.15);
-    transform: translateY(-2px);
-}
-.sup-card.top { border-left-color: #2563EB; }
-.sup-name { font-size: 17px; font-weight: 800; color: #1E293B; margin-bottom: 4px; }
-.sup-cat { font-size: 12px; color: #7C3AED; font-weight: 600; text-transform: uppercase;
-    letter-spacing: .06em; }
-.stat-row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
-.stat-chip {
-    background: #F1F5F9; border-radius: 8px; padding: 6px 12px;
-    font-size: 12px; color: #475569; font-weight: 600;
-}
-.badge { display:inline-block; padding:4px 12px; border-radius:20px;
-    font-size:11px; font-weight:700; }
-.badge-top { background:#DBEAFE; color:#1D4ED8; }
-.badge-good { background:#D1FAE5; color:#065F46; }
-.badge-avg { background:#FEF3C7; color:#92400E; }
-.score-big { font-size: 28px; font-weight: 800; color: #2563EB; }
-.divider { height:1px; background:linear-gradient(90deg,transparent,#E2E8F0,transparent); margin:24px 0; }
-.rank-table-header {
-    display:grid; grid-template-columns: 40px 1fr 80px 80px 80px 80px 80px;
-    gap:8px; padding:10px 16px;
-    background: linear-gradient(135deg, #EFF6FF, #F5F3FF);
-    border-radius:10px 10px 0 0;
-    font-size:11px; font-weight:700; color:#475569; text-transform:uppercase;
-    letter-spacing:.06em;
-}
-.rank-table-row {
-    display:grid; grid-template-columns: 40px 1fr 80px 80px 80px 80px 80px;
-    gap:8px; padding:12px 16px;
-    border-bottom: 1px solid #F1F5F9; font-size:13px; color:#334155;
-    background: white;
-}
-.rank-table-row:last-child { border-radius: 0 0 10px 10px; border-bottom:none; }
-.rank-table-row:hover { background:#F8FAFF; }
-</style>
-""", unsafe_allow_html=True)
+st.markdown(
+    dedent(f"""
+    <div>
+
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px">
+
+            <div>
+                <div class="sup-name">{row['Supplier']}</div>
+                <div class="sup-cat">📂 {row['Category']}</div>
+            </div>
+
+            <div style="text-align:right">
+                <div class="score-big">{score:.1f}</div>
+                <div style="font-size:11px;color:#94A3B8">
+                    Reliability
+                </div>
+
+                <span class="badge {badge_class}"
+                      style="margin-top:4px;display:inline-block">
+                    {badge_label}
+                </span>
+            </div>
+
+        </div>
+
+        <div style="margin-bottom:12px">
+
+            <div style="
+                display:flex;
+                justify-content:space-between;
+                font-size:12px;
+                color:#64748B;
+                margin-bottom:4px;
+            ">
+                <span>Reliability Score</span>
+                <span>{score:.1f}/100</span>
+            </div>
+
+            <div style="
+                background:#E2E8F0;
+                border-radius:4px;
+                height:8px;
+            ">
+
+                <div style="
+                    width:{score}%;
+                    height:100%;
+                    background:linear-gradient(90deg,#7C3AED,#2563EB);
+                    border-radius:4px;
+                ">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    """),
+    unsafe_allow_html=True
+)
 
 with st.sidebar:
     st.markdown("### 🏪 VendorVault AI")
